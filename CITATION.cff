@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "QHE-EJP: Reproducible Computational Introduction to the Integer Quantum Hall Effect"
+type: software
+authors:
+  - family-names: Rocha
+    given-names: Gabriel W. C.
+version: 0.1.0
+date-released: 2026-06-28
+license: MIT
+repository-code: "https://github.com/REPLACE-WITH-ACCOUNT/qhe-ejp"
+abstract: >-
+  A reproducible scientific-computing and teaching repository connecting Berry
+  curvature and Chern-number calculations to bulk-boundary correspondence and
+  chiral edge-wave-packet dynamics in the Harper-Hofstadter model.
+keywords:
+  - quantum Hall effect
+  - topological phases
+  - Berry curvature
+  - Chern number
+  - Harper-Hofstadter model
+  - computational physics
+preferred-citation:
+  type: article
+  title: "From Berry Curvature to Chiral Edge Transport: A Reproducible Computational Introduction to the Integer Quantum Hall Effect"
+  authors:
+    - family-names: Rocha
+      given-names: Gabriel W. C.
+  status: "manuscript in preparation"
+  notes: "Update this entry with journal, DOI, volume, and page/article number after publication."

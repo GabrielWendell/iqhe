@@ -1,0 +1,67 @@
+# Python bytecode and build output
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Test, coverage, and lint caches
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.ruff_cache/
+.mypy_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# Editor and OS files
+.vscode/
+.idea/
+*.code-workspace
+.DS_Store
+Thumbs.db
+
+# Local configuration, secrets, and logs
+.env
+.env.*
+!.env.example
+*.log
+
+# Generated numerical and visual outputs
+results/generated/
+figures/generated/
+figures/*.pdf
+figures/*.png
+figures/*.svg
+figures/*.mp4
+figures/*.gif
+!figures/README.md
+
+# Local data and archives
+/data/raw/
+/data/interim/
+/data/external/
+*.h5
+*.hdf5
+*.npy
+*.npz
+*.pkl
+*.pickle
+*.zip
+*.tar
+*.tar.gz
+
+# Temporary work
+scratch/
+tmp/

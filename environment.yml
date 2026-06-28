@@ -1,0 +1,18 @@
+name: qhe
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - numpy>=1.26
+  - scipy>=1.12
+  - matplotlib>=3.8
+  - sympy>=1.12
+  - pandas>=2.2
+  - jupyterlab>=4
+  - ipykernel>=6
+  - pytest>=8
+  - pytest-cov>=5
+  - ruff>=0.6
+  - pip:
+      - -e .[dev,notebooks]
