@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "qhe"
-version = "0.1.0"
+version = "0.2.0"
 description = "Reproducible computational workflows for an EJP teaching article on the integer quantum Hall effect."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -46,7 +46,6 @@ dev = [
   "ruff>=0.6",
   "build>=1.2",
   "twine>=5",
-  "pytest>=9.1",
 ]
 notebooks = [
   "jupyterlab>=4",
@@ -58,7 +57,7 @@ docs = [
   "mkdocs-material>=9.5",
 ]
 all = [
-  "qhe-ejp[dev,notebooks,docs]",
+  "qhe[dev,notebooks,docs]",
 ]
 
 [project.urls]
@@ -88,7 +87,7 @@ select = ["E", "F", "I", "UP", "B", "SIM"]
 ignore = ["E203"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["qhe_ejp"]
+known-first-party = ["qhe"]
 
 [tool.ruff.format]
 quote-style = "double"
@@ -97,7 +96,7 @@ line-ending = "lf"
 
 [tool.coverage.run]
 branch = true
-source = ["qhe_ejp"]
+source = ["qhe"]
 
 [tool.coverage.report]
 show_missing = true
