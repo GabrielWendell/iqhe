@@ -1,6 +1,12 @@
 """Hamiltonian definitions and model parameters."""
 
-from qhe.models.dirac import DiracParameters, massive_dirac_energies, massive_dirac_hamiltonian
+from qhe.models.dirac import (
+    DiracParameters,
+    massive_dirac_berry_curvature,
+    massive_dirac_energies,
+    massive_dirac_hamiltonian,
+    massive_dirac_hamiltonian_derivatives,
+)
 from qhe.models.harper_hofstadter import (
     HarperHofstadterParameters,
     MagneticBrillouinZone,
@@ -15,17 +21,19 @@ from qhe.models.harper_hofstadter import (
 )
 
 __all__ = [
-    'DiracParameters',
-    'HarperHofstadterParameters',
-    'MagneticBrillouinZone',
-    'bloch_hamiltonian',
-    'bloch_hamiltonian_derivatives',
-    'magnetic_brillouin_zone',
-    'massive_dirac_energies',
-    'massive_dirac_hamiltonian',
-    'open_hamiltonian',
-    'peierls_phase',
-    'ribbon_hamiltonian',
-    'site_coordinates',
-    'site_index',
+    "DiracParameters",
+    "HarperHofstadterParameters",
+    "MagneticBrillouinZone",
+    "bloch_hamiltonian",
+    "bloch_hamiltonian_derivatives",
+    "magnetic_brillouin_zone",
+    "massive_dirac_berry_curvature",
+    "massive_dirac_energies",
+    "massive_dirac_hamiltonian",
+    "massive_dirac_hamiltonian_derivatives",
+    "open_hamiltonian",
+    "peierls_phase",
+    "ribbon_hamiltonian",
+    "site_coordinates",
+    "site_index",
 ]

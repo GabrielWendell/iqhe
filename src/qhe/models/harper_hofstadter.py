@@ -174,7 +174,9 @@ def ribbon_hamiltonian(
     params = parameters or HarperHofstadterParameters()
     sites = np.arange(lx, dtype=float)
     matrix = np.diag(
-        -2.0 * params.ty * np.cos(float(ky) * params.lattice_spacing - 2.0 * np.pi * params.flux * sites)
+        -2.0
+        * params.ty
+        * np.cos(float(ky) * params.lattice_spacing - 2.0 * np.pi * params.flux * sites)
     ).astype(np.complex128)
 
     for m in range(lx - 1):

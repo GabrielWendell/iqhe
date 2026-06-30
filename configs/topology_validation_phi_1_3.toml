@@ -1,0 +1,22 @@
+[model]
+name = "Harper-Hofstadter"
+p = 1
+q = 3
+tx = 1.0
+ty = 1.0
+lattice_spacing = 1.0
+
+[mesh]
+resolutions = [21, 41, 81]
+closed_open_bounds = true
+
+[expected]
+chern_numbers = [-1, 2, -1]
+chern_sum = 0
+
+[validation]
+overlap_floor = 1.0e-12
+degeneracy_tolerance = 1.0e-12
+minimum_direct_gap_floor = 1.0e-8
+fhs_chern_atol = 1.0e-10
+kubo_chern_atol_final_mesh = 1.0e-6
