@@ -1,21 +1,22 @@
 # Notebooks
 
-Notebooks are ordered pedagogically and should execute from a clean environment without hidden state.
+Notebooks are pedagogical front ends for tested source modules.  They must not contain the only
+implementation of a publication result or silently change the frozen convention sheet.
 
-## Planned order
+## Current notebook sequence
 
-1. `00_project_setup.ipynb`
-2. `01_dirac_curvature.ipynb`
-3. `02_fhs_kubo_validation.ipynb`
-4. `03_hofstadter_bulk.ipynb`
-5. `04_ribbon_edge_states.ipynb`
-6. `05_chiral_dynamics.ipynb`
-7. `06_velocity_and_defect.ipynb`
+1. `00_conventions_and_hamiltonian_core.ipynb` — Stage-1 public API and Hamiltonian checks.
+2. `01_topology_reliability.ipynb` — Stage-2 Dirac warm-up, FHS/Kubo validation, direct gaps, and
+   mesh convergence for the `phi=1/3` Harper-Hofstadter model.
+3. `02_edge_physics.ipynb` — Stage-3 ribbon spectrum, edge participation, gap Chern numbers, and
+   side-resolved oriented crossings.
+4. `03_hofstadter_bulk.ipynb` — planned magnetic subbands, gaps, and annotated Chern numbers.
+5. `04_ribbon_edge_states.ipynb` — planned expanded edge-state visual analysis.
+6. `05_chiral_dynamics.ipynb` — planned wave-packet dynamics.
+7. `06_velocity_and_defect.ipynb` — planned velocity and defect validation.
 
-## Notebook rules
+Run a notebook only after installing the editable package with:
 
-- Restart and run all before committing.
-- Do not suppress exceptions that indicate scientific or numerical failures.
-- Import reusable functions from `qhe_ejp`; do not duplicate algorithms.
-- Save production outputs through scripts or clearly named notebook export cells.
-- Record parameters and units explicitly near the beginning of each notebook.
+```bash
+python -m pip install -e ".[dev,notebooks]"
+```

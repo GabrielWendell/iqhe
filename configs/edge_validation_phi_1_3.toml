@@ -1,0 +1,27 @@
+[model]
+name = "Harper-Hofstadter"
+p = 1
+q = 3
+tx = 1.0
+ty = 1.0
+lattice_spacing = 1.0
+
+[bulk]
+nkx = 41
+nky = 41
+
+[ribbon]
+lx = 48
+nky = 181
+edge_width = 4
+
+[expected]
+band_chern_numbers = [-1, 2, -1]
+gap_chern_numbers = [-1, 1]
+left_oriented_crossing_counts = [-1, 1]
+right_oriented_crossing_counts = [1, -1]
+
+[validation]
+minimum_bulk_gap_floor = 1.0e-8
+edge_participation_threshold = 0.70
+side_margin = 1.0e-3
