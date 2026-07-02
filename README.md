@@ -17,35 +17,51 @@ scientific Python.
 The repository implements one coherent computational route:
 
 $$
-	ext{Berry curvature}
+\text{Berry curvature}
 \longrightarrow
-	ext{Chern number}
+\text{Chern number}
 \longrightarrow
-	ext{bulk-boundary correspondence}
+\text{bulk-boundary correspondence}
 \longrightarrow
-	ext{chiral edge-wave-packet dynamics}.
+\text{chiral edge-wave-packet dynamics}.
 $$
 
 The Harper-Hofstadter lattice is the central model.  The massive Dirac model is retained as a
 compact warm-up for Berry curvature and lattice regularization.
 
-## Stage 1 status
+## Stage 3 status
 
-**Current stage:** Stage 1 — frozen conventions and canonical Hamiltonian core.
+**Current stage:** Stage 3 — measurable edge physics.
 
-Stage 1 replaces legacy prototype definitions with one tested Harper-Hofstadter parent model in
-Landau gauge.  The repository now provides:
+Stages 1–2 freeze the Hamiltonian core and validate periodic bulk topology.  Stage 3 adds:
 
-- a frozen convention sheet in [`docs/CONVENTIONS.md`](docs/CONVENTIONS.md);
-- canonical open, ribbon, and magnetic-Bloch Harper-Hofstadter Hamiltonians;
-- a rectangular-lattice-safe site-index convention;
-- analytic magnetic-Bloch derivatives for later Kubo-curvature validation;
-- a massive two-band Dirac warm-up Hamiltonian;
-- regression tests for Hermiticity, phases, indexing, and derivatives;
-- a notebook that demonstrates the public Stage-1 API.
+- explicit left/right edge-strip masks for ribbons and open finite lattices;
+- quantitative edge participation, edge polarization, and inverse participation ratio diagnostics;
+- x-open/y-periodic ribbon spectra on a reproducible closed-open momentum grid;
+- global bulk-gap extraction and cumulative gap Chern numbers;
+- edge-localized reference-energy crossing detection with measured branch orientation;
+- side-resolved finite-ribbon bulk-boundary regression tests and figure builders.
 
-Stage 1 deliberately does **not** yet make a Chern-number, FHS/Kubo, edge-state, or dynamics
-claim.  Those are Stage-2 and later validation tasks.
+Stage 2 also provides:
+
+- a reusable periodic magnetic-Brillouin-zone mesh and one diagonalization per momentum node;
+- gauge-invariant Fukui-Hatsugai-Suzuki (FHS) plaquette fluxes and Chern numbers;
+- independent isolated-band interband-Kubo curvature and Chern integration;
+- direct-gap diagnostics before any isolated-band topological interpretation;
+- compatible FHS/Kubo density residual maps and mesh-refinement norms;
+- a massive-Dirac analytic-versus-Kubo local-curvature warm-up;
+- regression tests for gauge invariance, Chern values, Kubo convergence, and curvature residuals;
+- a Stage-2 notebook and command-line acceptance workflow.
+
+For the central `phi=1/3` Harper-Hofstadter model, the frozen convention target is
+
+$$
+(C_1,C_2,C_3)=(-1,2,-1),\qquad \sum_n C_n=0.
+$$
+
+Stage 3 validates the static finite-ribbon signature of bulk-boundary correspondence.  Real-space chiral
+wave-packet dynamics, currents, leakage, group-velocity agreement, and defect routing remain intentionally
+deferred to later stages.
 
 ## Repository layout
 
@@ -73,6 +89,8 @@ conda env create -f environment.yml
 conda activate qhe
 python scripts/verify_repo.py
 python scripts/run_stage1_checks.py
+python scripts/run_stage2_checks.py
+python scripts/run_stage3_checks.py
 pytest
 ```
 
@@ -89,17 +107,21 @@ python -m pip install --upgrade pip
 python -m pip install -e ".[dev,notebooks]"
 python scripts/verify_repo.py
 python scripts/run_stage1_checks.py
+python scripts/run_stage2_checks.py
+python scripts/run_stage3_checks.py
 pytest
 ```
 
-## Minimal Stage-1 usage
+## Minimal Stage-3 usage
 
 ```python
-from qhe.models import HarperHofstadterParameters, bloch_hamiltonian, open_hamiltonian
+from qhe.models import HarperHofstadterParameters
+from qhe.boundary import analyze_bulk_boundary_correspondence
 
 params = HarperHofstadterParameters(p=1, q=3, tx=1.0, ty=1.0)
-h_bulk = bloch_hamiltonian(kx=0.0, ky=0.0, parameters=params)
-h_open = open_hamiltonian(lx=24, ly=30, parameters=params)
+analysis = analyze_bulk_boundary_correspondence(params, bulk_nkx=41, ribbon_lx=48)
+print(analysis.topology.fhs.chern_numbers)
+print([summary.gap.gap_chern_number for summary in analysis.crossing_summaries])
 ```
 
 ## Development commands
@@ -107,6 +129,8 @@ h_open = open_hamiltonian(lx=24, ly=30, parameters=params)
 ```bash
 python scripts/verify_repo.py
 python scripts/run_stage1_checks.py
+python scripts/run_stage2_checks.py
+python scripts/run_stage3_checks.py
 pytest
 ruff check src tests scripts
 ruff format --check src tests scripts
@@ -124,12 +148,12 @@ ruff format --check src tests scripts
 ## Planned notebook sequence
 
 1. `00_conventions_and_hamiltonian_core.ipynb` — Stage-1 checks and canonical Hamiltonians.
-2. `01_dirac_curvature.ipynb` — Berry curvature in the massive Dirac warm-up.
-3. `02_fhs_kubo_validation.ipynb` — discrete FHS flux versus interband Kubo curvature.
-4. `03_hofstadter_bulk.ipynb` — magnetic unit cell, bulk bands, gaps, and Chern numbers.
-5. `04_ribbon_edge_states.ipynb` — edge participation and bulk-boundary correspondence.
-6. `05_chiral_dynamics.ipynb` — projected packets, currents, leakage, and centroid observables.
-7. `06_velocity_and_defect.ipynb` — group-velocity agreement and controlled defect routing.
+2. `01_topology_reliability.ipynb` — Stage-2 FHS, interband Kubo, gaps, and mesh convergence.
+3. `02_edge_physics.ipynb` — Stage-3 edge strips, ribbon spectra, and bulk-boundary crossings.
+4. `03_hofstadter_bulk.ipynb` — planned magnetic unit-cell, bulk-band, and Chern-label exploration.
+5. `04_ribbon_edge_states.ipynb` — planned expanded edge-state visual analysis.
+6. `05_chiral_dynamics.ipynb` — planned projected wave packets, currents, leakage, and centroid observables.
+7. `06_velocity_and_defect.ipynb` — planned group-velocity agreement and controlled defect routing.
 
 ## Citation
 
