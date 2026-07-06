@@ -27,15 +27,15 @@ from matplotlib.colors import Normalize
 
 from qhe.boundary import BulkBoundaryAnalysis, EdgeCrossing, RibbonSpectrum
 from .style import (
-        FIGSIZE,
-        QHE_COLORS,
-        crossing_color,
-        edge_side_color,
-        set_style,
-        style_axes,
-        style_colorbar,
-        style_legend,
-    )
+    FIGSIZE,
+    QHE_COLORS,
+    crossing_color,
+    edge_side_color,
+    set_style,
+    style_axes,
+    style_colorbar,
+    style_legend,
+)
 
 
 
@@ -191,10 +191,7 @@ def plot_crossing_profiles(
             side_key,
             str(crossing.side).strip().capitalize(),
         )
-        label = (
-            rf"{display_side} Edge: $k_y={crossing.ky:.3f}$, "
-            rf"$\partial E/\partial k_y={crossing.slope:.3f}$"
-        )
+        label = f"{display_side} edge, branch {occurrence + 1}"
         ax.plot(
             x,
             probability,
@@ -214,7 +211,7 @@ def plot_crossing_profiles(
     )
     ax.set_ylim(bottom=0.0)
     ax.margins(x=0.015, y=0.10)
-    style_legend(ax, ncols=1, above=True)
+    style_legend(ax, loc="best", ncols=1)
     return figure, ax
 
 

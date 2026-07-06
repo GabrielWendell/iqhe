@@ -354,14 +354,17 @@ def style_axes(
     else:
         ax.minorticks_off()
 
-    ax.grid(
-        grid,
-        axis=grid_axis,
-        which="major",
-        linestyle=":",
-        color=QHE_COLORS["grid"],
-        linewidth=0.70,
-    )
+    if grid:
+        ax.grid(
+            True,
+            axis=grid_axis,
+            which="major",
+            linestyle=":",
+            color=QHE_COLORS["grid"],
+            linewidth=0.70,
+        )
+    else:
+        ax.grid(False)
 
     for spine in ax.spines.values():
         spine.set_linewidth(0.90)

@@ -124,6 +124,32 @@ print(analysis.topology.fhs.chern_numbers)
 print([summary.gap.gap_chern_number for summary in analysis.crossing_summaries])
 ```
 
+## Minimal Stage-4 figure build
+
+```bash
+python scripts/make_main_figures.py
+# Optional fast smoke render to a temporary output directory:
+python scripts/make_main_figures.py --fast --output-dir /tmp/qhe-figures
+```
+
+The renderer exports Figures 1–6 as PDF and PNG files, plus `manifest.json`, under
+`figures/generated/main/`. Figure captions are source-controlled in `figures/captions.md`.
+
+
+## Development commands
+
+```bash
+python scripts/verify_repo.py
+python scripts/run_stage1_checks.py
+python scripts/run_stage2_checks.py
+python scripts/run_stage3_checks.py
+python scripts/make_main_figures.py
+python scripts/run_stage4_checks.py
+pytest
+ruff check src tests scripts
+ruff format --check src tests scripts
+```
+
 ## Development commands
 
 ```bash
