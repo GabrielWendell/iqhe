@@ -1,0 +1,46 @@
+[build]
+context = "paper"
+formats = ["pdf", "png"]
+output_directory = "figures/generated/main"
+
+[model]
+name = "Harper-Hofstadter"
+p = 1
+q = 3
+tx = 1.0
+ty = 1.0
+lattice_spacing = 1.0
+
+[dirac]
+v_fermi = 1.0
+mass = 0.25
+kmax = 1.2
+n_line = 301
+n_map = 151
+
+[topology]
+nkx = 41
+nky = 41
+band_index = 0
+convergence_mesh_sizes = [21, 41, 81]
+
+[ribbon]
+lx = 48
+nky = 181
+edge_width = 4
+edge_participation_threshold = 0.70
+side_margin = 1.0e-3
+
+[figure_program]
+implemented = [
+  "figure_01_conceptual_roadmap",
+  "figure_02_fhs_plaquette",
+  "figure_03_massive_dirac_warmup",
+  "figure_04_hofstadter_bulk_bands",
+  "figure_05_fhs_kubo_validation",
+  "figure_06_ribbon_bulk_boundary",
+]
+reserved_for_later_stages = [
+  "figure_07_chiral_dynamics",
+  "figure_08_velocity_and_defect",
+]
