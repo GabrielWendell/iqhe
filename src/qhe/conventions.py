@@ -24,16 +24,16 @@ class FrozenConventions:
     electron_charge: float = -1.0
     hbar: float = 1.0
     lattice_spacing: float = 1.0
-    magnetic_field_direction: str = '+z'
-    gauge: str = 'Landau gauge A = (0, Bx, 0)'
-    berry_connection: str = 'A_n,mu = i <u_n | partial_{k_mu} u_n>'
-    berry_curvature: str = 'Omega_n = partial_kx A_n,y - partial_ky A_n,x'
-    chern_number: str = 'C_n = (1 / 2pi) integral_BZ Omega_n d^2k'
-    hall_conductivity: str = 'sigma_xy = -(e^2 / h) sum_{n in occ} C_n'
-    site_indexing: str = 'index(m, n; Ly) = m * Ly + n; reshape -> (Lx, Ly)'
+    magnetic_field_direction: str = "+z"
+    gauge: str = "Landau gauge A = (0, Bx, 0)"
+    berry_connection: str = "A_n,mu = i <u_n | partial_{k_mu} u_n>"
+    berry_curvature: str = "Omega_n = partial_kx A_n,y - partial_ky A_n,x"
+    chern_number: str = "C_n = (1 / 2pi) integral_BZ Omega_n d^2k"
+    hall_conductivity: str = "sigma_xy = -(e^2 / h) sum_{n in occ} C_n"
+    site_indexing: str = "index(m, n; Ly) = m * Ly + n; reshape -> (Lx, Ly)"
     fhs_orientation: str = (
-        'Use -Arg[U_x(k) U_y(k+x) U_x(k+y)^(-1) U_y(k)^(-1)] so that '
-        'the discrete result matches the Berry convention above.'
+        "Use -Arg[U_x(k) U_y(k+x) U_x(k+y)^(-1) U_y(k)^(-1)] so that "
+        "the discrete result matches the Berry convention above."
     )
 
     @property
@@ -46,4 +46,4 @@ class FrozenConventions:
 CONVENTIONS = FrozenConventions()
 
 
-__all__ = ['CONVENTIONS', 'FrozenConventions']
+__all__ = ["CONVENTIONS", "FrozenConventions"]

@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Literal, Sequence
+from typing import Literal
 
 import matplotlib.pyplot as plt
+import numpy as np
 from matplotlib.axes import Axes
 from matplotlib.colors import Normalize, TwoSlopeNorm
 from matplotlib.figure import Figure
-import numpy as np
 
 from qhe.models import (
     DiracParameters,
@@ -145,7 +145,15 @@ def plot_massive_dirac_warmup(
 
 
 def _magnetic_path(
-    parameters: HarperHofstadterParameters, points_per_segment: int) -> tuple[np.ndarray, np.ndarray, np.ndarray, tuple[float, ...], tuple[str, ...]]:
+    parameters: HarperHofstadterParameters,
+    points_per_segment: int,
+) -> tuple[
+    np.ndarray,
+    np.ndarray,
+    np.ndarray,
+    tuple[float, ...],
+    tuple[str, ...],
+]:
     if points_per_segment < 2:
         raise ValueError("points_per_segment must be at least two.")
     zone = magnetic_brillouin_zone(parameters)
@@ -161,7 +169,12 @@ def _magnetic_path(
     tick_positions = [0.0]
     current = 0.0
     for segment_index, (first, second) in enumerate(zip(vertices[:-1], vertices[1:], strict=True)):
-        local = np.linspace(0.0, 1.0, points_per_segment, endpoint=segment_index == len(vertices) - 2)
+        local = np.linspace(
+            0.0,
+            1.0,
+            points_per_segment,
+            endpoint=segment_index == len(vertices) - 2,
+        )
         if segment_index > 0:
             local = local[1:]
         dx = second[0] - first[0]
@@ -228,7 +241,12 @@ def plot_hofstadter_bulk_bands(
 
     energies = np.empty((kx.size, params.q), dtype=float)
     for index, (kx_value, ky_value) in enumerate(zip(kx, ky, strict=True)):
-        energies[index] = np.linalg.eigvalsh(bloch_hamiltonian(float(kx_value), float(ky_value), params))
+        hamiltonian = bloch_hamiltonian(
+            float(kx_value),
+            float(ky_value),
+            params,
+        )
+        energies[index] = np.linalg.eigvalsh(hamiltonian)
 
     chern = np.rint(analysis.fhs.chern_numbers).astype(int)
     for band in range(params.q):
@@ -348,7 +366,14 @@ def plot_fhs_kubo_validation(
         grid_axis="y",
     )
     style_legend(axes[1, 0], loc="best", ncols=1)
-    annotate_textbox(axes[1, 0], "Lines: FHS\n$\\times$ : Kubo", x=0.93, y=0.77, va="center", fontsize=8.0)
+    annotate_textbox(
+        axes[1, 0],
+        "Lines: FHS\n$\\times$ : Kubo",
+        x=0.93,
+        y=0.77,
+        va="center",
+        fontsize=8.0,
+    )
     panel_label(axes[1, 0], "(d)")
 
     for band in range(band_count):

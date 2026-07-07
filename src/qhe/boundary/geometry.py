@@ -95,12 +95,7 @@ def open_edge_mask(lx: int, ly: int, edge_width: int) -> OpenEdgeMask:
     _validate_edge_width(int(ly), int(edge_width), name="ly")
     m = np.arange(int(lx))[:, None]
     n = np.arange(int(ly))[None, :]
-    grid = (
-        (m < edge_width)
-        | (m >= lx - edge_width)
-        | (n < edge_width)
-        | (n >= ly - edge_width)
-    )
+    grid = (m < edge_width) | (m >= lx - edge_width) | (n < edge_width) | (n >= ly - edge_width)
     return OpenEdgeMask(mask=grid.reshape(lx * ly), lx=int(lx), ly=int(ly), width=int(edge_width))
 
 
@@ -172,8 +167,8 @@ def inverse_participation_ratio(
         was_vector = False
     else:
         raise ValueError(
-        "states must be a one-dimensional state or a two-dimensional state-column matrix."
-    )
+            "states must be a one-dimensional state or a two-dimensional state-column matrix."
+        )
 
     density = np.abs(matrix) ** 2
     if normalize:

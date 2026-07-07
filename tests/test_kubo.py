@@ -4,8 +4,8 @@ import numpy as np
 
 from qhe.models import (
     DiracParameters,
-    bloch_hamiltonian_derivatives,
     HarperHofstadterParameters,
+    bloch_hamiltonian_derivatives,
     massive_dirac_berry_curvature,
     massive_dirac_hamiltonian,
     massive_dirac_hamiltonian_derivatives,

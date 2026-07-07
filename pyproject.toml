@@ -1,14 +1,15 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "qhe"
-version = "0.5.0"
+version = "0.6.0"
 description = "Reproducible computational workflows for an EJP teaching article on the integer quantum Hall effect."
 readme = "README.md"
 requires-python = ">=3.11"
-license = { file = "LICENSE" }
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [
   { name = "Gabriel W. C. Rocha" },
 ]
@@ -19,16 +20,19 @@ keywords = [
   "Chern number",
   "Harper-Hofstadter",
   "computational physics",
+  "physics education",
+  "reproducible research",
 ]
 classifiers = [
-  "Development Status :: 2 - Pre-Alpha",
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Education",
   "Intended Audience :: Science/Research",
-  "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  "Topic :: Education",
   "Topic :: Scientific/Engineering :: Physics",
 ]
 dependencies = [
@@ -44,26 +48,42 @@ dev = [
   "pytest>=8",
   "pytest-cov>=5",
   "ruff>=0.6",
-  "build>=1.2",
-  "twine>=5",
 ]
 notebooks = [
   "jupyterlab>=4",
   "ipykernel>=6",
   "nbformat>=5",
+  "nbclient>=0.10",
+  "nbconvert>=7",
 ]
 docs = [
   "mkdocs>=1.6",
   "mkdocs-material>=9.5",
 ]
+release = [
+  "build>=1.2",
+  "twine>=5",
+]
 all = [
-  "qhe[dev,notebooks,docs]",
+  "pytest>=8",
+  "pytest-cov>=5",
+  "ruff>=0.6",
+  "jupyterlab>=4",
+  "ipykernel>=6",
+  "nbformat>=5",
+  "nbclient>=0.10",
+  "nbconvert>=7",
+  "mkdocs>=1.6",
+  "mkdocs-material>=9.5",
+  "build>=1.2",
+  "twine>=5",
 ]
 
 [project.urls]
-Homepage = "https://github.com/REPLACE-WITH-ACCOUNT/qhe-ejp"
-Repository = "https://github.com/REPLACE-WITH-ACCOUNT/qhe-ejp"
-Issues = "https://github.com/REPLACE-WITH-ACCOUNT/qhe-ejp/issues"
+Homepage = "https://github.com/GabrielWendell/qhe-ejp"
+Repository = "https://github.com/GabrielWendell/qhe-ejp"
+Issues = "https://github.com/GabrielWendell/qhe-ejp/issues"
+Changelog = "https://github.com/GabrielWendell/qhe-ejp/blob/main/CHANGELOG.md"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
@@ -80,7 +100,7 @@ pythonpath = ["src"]
 [tool.ruff]
 line-length = 99
 target-version = "py311"
-extend-exclude = ["legacy"]
+extend-exclude = ["legacy", "results/generated", "figures/generated"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]
@@ -88,6 +108,12 @@ ignore = ["E203"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["qhe"]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/make_main_figures.py" = ["E402"]
+"scripts/run_stage1_checks.py" = ["E402"]
+"scripts/run_stage2_checks.py" = ["E402"]
+"scripts/run_stage3_checks.py" = ["E402"]
 
 [tool.ruff.format]
 quote-style = "double"

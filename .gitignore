@@ -65,3 +65,8 @@ figures/*.gif
 # Temporary work
 scratch/
 tmp/
+
+# Release and CI artifacts
+release-assets/
+ci-artifacts/
+release-smoke/

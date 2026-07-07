@@ -8,8 +8,8 @@ orientation separately on the left and right boundaries.
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass
-from typing import Iterable
 
 import numpy as np
 
@@ -160,7 +160,7 @@ def bulk_gaps_from_band_mesh(
         if upper - lower <= positive_gap_floor:
             raise ValueError(
                 "Bulk gap "
-                f"{index} is not positive on the supplied mesh: upper-lower={upper-lower:.3e}."
+                f"{index} is not positive on the supplied mesh: upper-lower={upper - lower:.3e}."
             )
         gaps.append(
             BulkGap(
@@ -184,9 +184,7 @@ def _segment_spacing(ribbon: RibbonSpectrum, segment_index: int) -> float:
 
     if segment_index < ribbon.nky - 1:
         return float(ribbon.ky[segment_index + 1] - ribbon.ky[segment_index])
-    return float(
-        (ribbon.ky[0] + 2.0 * np.pi / ribbon.parameters.lattice_spacing) - ribbon.ky[-1]
-    )
+    return float((ribbon.ky[0] + 2.0 * np.pi / ribbon.parameters.lattice_spacing) - ribbon.ky[-1])
 
 
 def _interpolate_periodic_ky(ribbon: RibbonSpectrum, segment_index: int, fraction: float) -> float:

@@ -13,4 +13,4 @@ Suggested migration record:
 
 | Legacy component | Replacement | Validation status | Notes |
 |---|---|---|---|
-| `Efeito Hall Quântico.ipynb` | TBD | Pending | Frozen prototype; Stage 1 begins canonical rebuild. |
+| `Efeito_Hall_Quantico.ipynb` | TBD | Pending | Frozen prototype; Stage 1 begins canonical rebuild. |

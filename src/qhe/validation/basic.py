@@ -12,7 +12,7 @@ def hermiticity_residual(matrix: np.ndarray) -> float:
 
     array = np.asarray(matrix)
     if array.ndim != 2 or array.shape[0] != array.shape[1]:
-        raise ValidationError('Hermiticity requires a square rank-2 matrix.')
+        raise ValidationError("Hermiticity requires a square rank-2 matrix.")
     return float(np.max(np.abs(array - array.conj().T)))
 
 
@@ -22,5 +22,5 @@ def assert_hermitian(matrix: np.ndarray, *, atol: float = 1e-12) -> None:
     residual = hermiticity_residual(matrix)
     if residual > atol:
         raise ValidationError(
-            f'Matrix is not Hermitian within atol={atol:g}; max residual={residual:.3e}.'
+            f"Matrix is not Hermitian within atol={atol:g}; max residual={residual:.3e}."
         )

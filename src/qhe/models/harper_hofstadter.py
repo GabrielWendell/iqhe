@@ -37,15 +37,15 @@ class HarperHofstadterParameters:
 
     def __post_init__(self) -> None:
         if not isinstance(self.p, int) or not isinstance(self.q, int):
-            raise TypeError('p and q must be integers.')
+            raise TypeError("p and q must be integers.")
         if self.q <= 0:
-            raise ValueError('q must be a positive integer.')
+            raise ValueError("q must be a positive integer.")
         if gcd(self.p, self.q) != 1:
-            raise ValueError('p and q must be coprime.')
+            raise ValueError("p and q must be coprime.")
         if self.tx <= 0.0 or self.ty <= 0.0:
-            raise ValueError('tx and ty must be strictly positive.')
+            raise ValueError("tx and ty must be strictly positive.")
         if self.lattice_spacing <= 0.0:
-            raise ValueError('lattice_spacing must be strictly positive.')
+            raise ValueError("lattice_spacing must be strictly positive.")
 
     @property
     def flux(self) -> float:
@@ -112,9 +112,9 @@ def site_index(m: int, n: int, ly: int) -> int:
     """
 
     if ly <= 0:
-        raise ValueError('ly must be strictly positive.')
+        raise ValueError("ly must be strictly positive.")
     if m < 0 or n < 0 or n >= ly:
-        raise IndexError('Invalid lattice coordinate for the supplied ly.')
+        raise IndexError("Invalid lattice coordinate for the supplied ly.")
     return int(m) * int(ly) + int(n)
 
 
@@ -122,9 +122,9 @@ def site_coordinates(index: int, ly: int) -> tuple[int, int]:
     """Invert :func:`site_index` for a state-vector index."""
 
     if ly <= 0:
-        raise ValueError('ly must be strictly positive.')
+        raise ValueError("ly must be strictly positive.")
     if index < 0:
-        raise IndexError('index must be non-negative.')
+        raise IndexError("index must be non-negative.")
     return divmod(int(index), int(ly))
 
 
@@ -136,7 +136,7 @@ def open_hamiltonian(
     """Build the parent Harper-Hofstadter Hamiltonian with open x and y boundaries."""
 
     if lx <= 0 or ly <= 0:
-        raise ValueError('lx and ly must be strictly positive.')
+        raise ValueError("lx and ly must be strictly positive.")
     params = parameters or HarperHofstadterParameters()
     matrix = np.zeros((lx * ly, lx * ly), dtype=np.complex128)
 
@@ -170,7 +170,7 @@ def ribbon_hamiltonian(
     """
 
     if lx <= 0:
-        raise ValueError('lx must be strictly positive.')
+        raise ValueError("lx must be strictly positive.")
     params = parameters or HarperHofstadterParameters()
     sites = np.arange(lx, dtype=float)
     matrix = np.diag(
@@ -262,14 +262,14 @@ def bloch_hamiltonian_derivatives(
 
 
 __all__ = [
-    'HarperHofstadterParameters',
-    'MagneticBrillouinZone',
-    'bloch_hamiltonian',
-    'bloch_hamiltonian_derivatives',
-    'magnetic_brillouin_zone',
-    'open_hamiltonian',
-    'peierls_phase',
-    'ribbon_hamiltonian',
-    'site_coordinates',
-    'site_index',
+    "HarperHofstadterParameters",
+    "MagneticBrillouinZone",
+    "bloch_hamiltonian",
+    "bloch_hamiltonian_derivatives",
+    "magnetic_brillouin_zone",
+    "open_hamiltonian",
+    "peierls_phase",
+    "ribbon_hamiltonian",
+    "site_coordinates",
+    "site_index",
 ]
