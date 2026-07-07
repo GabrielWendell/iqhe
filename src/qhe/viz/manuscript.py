@@ -5,9 +5,8 @@ from __future__ import annotations
 from typing import Literal
 
 import matplotlib.pyplot as plt
-from matplotlib.axes import Axes
-from matplotlib.figure import Figure
 import numpy as np
+from matplotlib.figure import Figure
 
 from qhe.boundary import BulkBoundaryAnalysis, EdgeCrossing
 from qhe.viz.edge import plot_bulk_boundary_spectrum, plot_crossing_profiles

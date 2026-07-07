@@ -18,7 +18,7 @@ import tomllib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-LEGACY_NOTEBOOK = ROOT / "legacy" / "Efeito Hall Quântico.ipynb"
+LEGACY_NOTEBOOK = ROOT / "legacy" / "Efeito_Hall_Quantico.ipynb"
 LEGACY_SHA256 = "271bef33cc8fa80fdf988c344e56fae59e885ee695a634230a5a69dea5de4d03"
 
 

@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Callable
 
 import numpy as np
 
@@ -93,9 +93,7 @@ def interband_kubo_curvature_at_point(
                 f"tolerance={degeneracy_tolerance:.3e}."
             )
         numerator = velocity_x[band, mask] * velocity_y[mask, band]
-        curvature[band] = float(
-            -2.0 * np.imag(np.sum(numerator / energy_difference[mask] ** 2))
-        )
+        curvature[band] = float(-2.0 * np.imag(np.sum(numerator / energy_difference[mask] ** 2)))
 
     return curvature
 
@@ -123,9 +121,7 @@ def kubo_from_band_mesh(
                 degeneracy_tolerance=degeneracy_tolerance,
             )
 
-    chern_numbers = (
-        np.sum(curvature, axis=(0, 1)) * band_mesh.mesh.plaquette_area / (2.0 * np.pi)
-    )
+    chern_numbers = np.sum(curvature, axis=(0, 1)) * band_mesh.mesh.plaquette_area / (2.0 * np.pi)
     return KuboResult(
         curvature_density=curvature,
         chern_numbers=chern_numbers,

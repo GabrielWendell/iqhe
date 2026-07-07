@@ -18,10 +18,11 @@ Typical usage
 
 from __future__ import annotations
 
+import shutil
+from collections.abc import Iterable, Sequence
 from contextlib import contextmanager
 from pathlib import Path
-from typing import Any, Iterable, Literal, Sequence, TypeAlias, cast
-import shutil
+from typing import Any, Literal, TypeAlias, cast
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -144,9 +145,7 @@ def _validate_context(context: str) -> tuple[float, float, float]:
         return presets[context]
     except KeyError as exc:
         valid = ", ".join(presets)
-        raise ValueError(
-            f"Unsupported context {context!r}. Choose one of: {valid}."
-        ) from exc
+        raise ValueError(f"Unsupported context {context!r}. Choose one of: {valid}.") from exc
 
 
 def build_rcparams(

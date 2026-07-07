@@ -7,14 +7,14 @@ labels and manuscript captions carry the narrative context.
 
 from __future__ import annotations
 
-from typing import Literal, cast
+from typing import Literal
 
 import matplotlib.pyplot as plt
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure, SubFigure
 from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 
-from qhe.viz.style import FIGSIZE, QHE_COLORS, panel_label, set_style
+from qhe.viz.style import FIGSIZE, QHE_COLORS, set_style
 
 PaperContext = Literal["paper", "notebook", "talk", "poster"]
 
@@ -53,7 +53,12 @@ def plot_conceptual_roadmap(
     resolved_ax.set_ylim(0.0, 1.0)
 
     stages = (
-        (0.035, r"Berry Curvature", r"Local geometry in $\mathbf{k}$ space", QHE_COLORS["negative"]),
+        (
+            0.035,
+            r"Berry Curvature",
+            r"Local geometry in $\mathbf{k}$ space",
+            QHE_COLORS["negative"],
+        ),
         (0.285, r"Chern Number", r"Gauge-invariant band integral", QHE_COLORS["highlight"]),
         (0.535, r"Ribbon Spectrum", r"Edge-localized branches", QHE_COLORS["positive"]),
         (0.785, r"Chiral Packet", r"Real-space boundary transport", QHE_COLORS["warning"]),

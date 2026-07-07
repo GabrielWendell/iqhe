@@ -13,7 +13,6 @@ clean-render result.
 from __future__ import annotations
 
 import json
-import shutil
 import subprocess
 import sys
 import tempfile
@@ -42,8 +41,8 @@ def main() -> int:
             str(output),
         ]
         environment = dict(**__import__("os").environ)
-        environment["PYTHONPATH"] = str(ROOT / "src") + __import__("os").pathsep + environment.get(
-            "PYTHONPATH", ""
+        environment["PYTHONPATH"] = (
+            str(ROOT / "src") + __import__("os").pathsep + environment.get("PYTHONPATH", "")
         )
         completed = subprocess.run(
             command,
@@ -71,11 +70,15 @@ def main() -> int:
                 )
             for record in manifest.get("implemented_figures", []):
                 if record.get("title_free") is not True:
-                    failures.append(f"{record.get('id')} is not marked title-free in the manifest.")
+                    failures.append(
+                        f"{record.get('id')} is not marked title-free in the manifest."
+                    )
                 for filename in record.get("files", []):
                     candidate = output / filename
                     if not candidate.is_file() or candidate.stat().st_size <= 1024:
-                        failures.append(f"Missing or implausibly small generated output: {candidate.name}.")
+                        failures.append(
+                            f"Missing or implausibly small generated output: {candidate.name}."
+                        )
             if tuple(manifest.get("reserved_for_later_stages", [])) != (
                 "figure_07_chiral_dynamics",
                 "figure_08_velocity_and_defect",

@@ -88,9 +88,7 @@ def massive_dirac_berry_curvature(
     """
 
     params = parameters or DiracParameters()
-    denominator = (
-        params.v_fermi**2 * (float(kx) ** 2 + float(ky) ** 2) + params.mass**2
-    ) ** 1.5
+    denominator = (params.v_fermi**2 * (float(kx) ** 2 + float(ky) ** 2) + params.mass**2) ** 1.5
     lower = params.mass * params.v_fermi**2 / (2.0 * denominator)
     return float(lower), float(-lower)
 

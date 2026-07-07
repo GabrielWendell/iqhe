@@ -14,5 +14,5 @@ def test_stage1_units_and_charge_conventions_are_frozen() -> None:
 
 
 def test_stage1_convention_text_records_fhs_orientation() -> None:
-    assert 'Use -Arg' in CONVENTIONS.fhs_orientation
-    assert 'sigma_xy' in CONVENTIONS.hall_conductivity
+    assert "Use -Arg" in CONVENTIONS.fhs_orientation
+    assert "sigma_xy" in CONVENTIONS.hall_conductivity

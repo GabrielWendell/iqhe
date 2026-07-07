@@ -7,10 +7,10 @@ Run from the repository root:
 
 from __future__ import annotations
 
+import re
 import sys
 import tomllib
 from pathlib import Path
-
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -36,7 +36,7 @@ REQUIRED_PATHS = (
     "src/qhe/validation/basic.py",
     "tests/test_package.py",
     "tests/test_validation.py",
-    "legacy/Efeito Hall Quântico.ipynb",
+    "legacy/Efeito_Hall_Quantico.ipynb",
     "legacy/LEGACY_MANIFEST.md",
 )
 
@@ -57,8 +57,11 @@ def main() -> int:
     if package.get("name") != expected_name:
         print(f"Unexpected project name: {package.get('name')!r} (expected {expected_name!r})")
         return 1
-    if package.get("version") != "0.1.0":
-        print("Stage-0 version must remain 0.1.0 until the first feature release.")
+    version = package.get("version")
+    if not isinstance(version, str) or re.fullmatch(r"\d+\.\d+\.\d+", version) is None:
+        print(
+            f"Package version must use the release form MAJOR.MINOR.PATCH; received {version!r}."
+        )
         return 1
 
     citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")

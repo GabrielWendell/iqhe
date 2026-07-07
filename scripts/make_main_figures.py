@@ -14,14 +14,14 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import os
 import subprocess
 import sys
 import tomllib
+from collections.abc import Iterable
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Iterable, Literal, cast
+from typing import Any, Literal, cast
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT / "src") not in sys.path:
@@ -32,8 +32,6 @@ import matplotlib
 matplotlib.use("Agg")
 
 from matplotlib.figure import Figure, SubFigure
-import matplotlib.pyplot as plt
-import numpy as np
 
 from qhe.boundary import analyze_bulk_boundary_correspondence
 from qhe.models import DiracParameters, HarperHofstadterParameters
@@ -61,9 +59,7 @@ def _parse_paper_context(value: object) -> PaperContext:
     context = str(value).strip().lower()
     if context not in _PAPER_CONTEXTS:
         valid = ", ".join(_PAPER_CONTEXTS)
-        raise ValueError(
-            f"Unsupported figure context {context!r}. Choose one of: {valid}."
-        )
+        raise ValueError(f"Unsupported figure context {context!r}. Choose one of: {valid}.")
     return cast(PaperContext, context)
 
 
@@ -165,7 +161,9 @@ def _read_config(path: Path, output_directory: Path | None = None) -> FigureBuil
         topology_nkx=int(topology_doc["nkx"]),
         topology_nky=int(topology_doc["nky"]),
         band_index=int(topology_doc["band_index"]),
-        convergence_mesh_sizes=tuple(int(value) for value in topology_doc["convergence_mesh_sizes"]),
+        convergence_mesh_sizes=tuple(
+            int(value) for value in topology_doc["convergence_mesh_sizes"]
+        ),
         ribbon_lx=int(ribbon_doc["lx"]),
         ribbon_nky=int(ribbon_doc["nky"]),
         edge_width=int(ribbon_doc["edge_width"]),
@@ -361,7 +359,7 @@ def render_main_figures(config: FigureBuildConfig) -> dict[str, Any]:
     )
 
     generated_files = [
-        path for record in records for path in (config.output_directory / name for name in record["files"])
+        config.output_directory / name for record in records for name in record["files"]
     ]
     manifest: dict[str, Any] = {
         "stage": 4,

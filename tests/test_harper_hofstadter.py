@@ -23,9 +23,9 @@ def params() -> HarperHofstadterParameters:
 
 
 def test_flux_parameters_require_coprime_integers() -> None:
-    with pytest.raises(ValueError, match='coprime'):
+    with pytest.raises(ValueError, match="coprime"):
         HarperHofstadterParameters(p=2, q=4)
-    with pytest.raises(ValueError, match='positive'):
+    with pytest.raises(ValueError, match="positive"):
         HarperHofstadterParameters(p=1, q=0)
 
 
@@ -52,7 +52,7 @@ def test_open_hamiltonian_is_hermitian_and_uses_forward_y_peierls_phase(
     assert np.allclose(matrix[origin, up], np.conjugate(matrix[up, origin]))
 
 
-@pytest.mark.parametrize('kx, ky', [(0.0, 0.0), (0.17, -0.33), (-0.4, 0.8)])
+@pytest.mark.parametrize("kx, ky", [(0.0, 0.0), (0.17, -0.33), (-0.4, 0.8)])
 def test_bloch_hamiltonian_is_hermitian(
     params: HarperHofstadterParameters,
     kx: float,
@@ -61,7 +61,7 @@ def test_bloch_hamiltonian_is_hermitian(
     assert_hermitian(bloch_hamiltonian(kx, ky, params))
 
 
-@pytest.mark.parametrize('ky', [-1.2, 0.0, 1.1])
+@pytest.mark.parametrize("ky", [-1.2, 0.0, 1.1])
 def test_ribbon_hamiltonian_is_hermitian(
     params: HarperHofstadterParameters,
     ky: float,
@@ -69,7 +69,9 @@ def test_ribbon_hamiltonian_is_hermitian(
     assert_hermitian(ribbon_hamiltonian(8, ky, params))
 
 
-def test_magnetic_brillouin_zone_matches_magnetic_period(params: HarperHofstadterParameters) -> None:
+def test_magnetic_brillouin_zone_matches_magnetic_period(
+    params: HarperHofstadterParameters,
+) -> None:
     zone = magnetic_brillouin_zone(params)
     assert np.isclose(zone.kx_width, 2.0 * np.pi / params.q)
     assert np.isclose(zone.ky_width, 2.0 * np.pi)
@@ -80,8 +82,12 @@ def test_bloch_derivatives_match_centered_finite_differences(
 ) -> None:
     kx, ky, step = 0.19, -0.47, 1.0e-7
     d_kx, d_ky = bloch_hamiltonian_derivatives(kx, ky, params)
-    finite_kx = (bloch_hamiltonian(kx + step, ky, params) - bloch_hamiltonian(kx - step, ky, params)) / (2.0 * step)
-    finite_ky = (bloch_hamiltonian(kx, ky + step, params) - bloch_hamiltonian(kx, ky - step, params)) / (2.0 * step)
+    finite_kx = (
+        bloch_hamiltonian(kx + step, ky, params) - bloch_hamiltonian(kx - step, ky, params)
+    ) / (2.0 * step)
+    finite_ky = (
+        bloch_hamiltonian(kx, ky + step, params) - bloch_hamiltonian(kx, ky - step, params)
+    ) / (2.0 * step)
     assert np.allclose(d_kx, finite_kx, atol=1.0e-7, rtol=1.0e-7)
     assert np.allclose(d_ky, finite_ky, atol=1.0e-7, rtol=1.0e-7)
 

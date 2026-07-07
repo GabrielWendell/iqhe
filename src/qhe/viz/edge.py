@@ -20,12 +20,13 @@ from collections.abc import Sequence
 from typing import Literal
 
 import matplotlib.pyplot as plt
-from matplotlib.axes import Axes
-from matplotlib.figure import Figure, SubFigure
 import numpy as np
+from matplotlib.axes import Axes
 from matplotlib.colors import Normalize
+from matplotlib.figure import Figure, SubFigure
 
 from qhe.boundary import BulkBoundaryAnalysis, EdgeCrossing, RibbonSpectrum
+
 from .style import (
     FIGSIZE,
     QHE_COLORS,
@@ -36,8 +37,6 @@ from .style import (
     style_colorbar,
     style_legend,
 )
-
-
 
 PaperContext = Literal["paper", "notebook", "talk", "poster"]
 
