@@ -1,0 +1,54 @@
+name: Reproducibility CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  clean-install:
+    name: Python ${{ matrix.python-version }} clean install
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Install release environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev,notebooks,release]"
+      - name: Run static quality checks
+        run: |
+          ruff check src tests scripts
+          ruff format --check src tests scripts
+      - name: Run release smoke test
+        run: python scripts/run_release_smoke.py --output-dir ci-artifacts
+      - name: Build distributions
+        run: |
+          python -m build
+          python -m twine check dist/*
+      - name: Upload reproducibility artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qhe-ejp-python-${{ matrix.python-version }}
+          path: |
+            ci-artifacts/
+            dist/
+          if-no-files-found: warn

@@ -1,0 +1,48 @@
+name: Tagged release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    name: Validate and publish ${{ github.ref_name }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out tagged revision
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Install release environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev,notebooks,release]"
+      - name: Check release metadata
+        run: python scripts/check_release_metadata.py --tag "${{ github.ref_name }}"
+      - name: Run clean release workflow
+        run: python scripts/run_release_smoke.py --output-dir release-smoke
+      - name: Build Python distributions
+        run: |
+          python -m build
+          python -m twine check dist/*
+      - name: Build source archive and checksums
+        run: |
+          python scripts/create_release_archive.py --tag "${{ github.ref_name }}" --output-dir release-assets
+          sha256sum dist/* release-assets/* > release-assets/SHA256SUMS-distributions.txt
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          body_path: release/RELEASE_NOTES_v0.6.0.md
+          files: |
+            dist/*
+            release-assets/*

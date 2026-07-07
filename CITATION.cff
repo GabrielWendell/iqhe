@@ -5,14 +5,16 @@ type: software
 authors:
   - family-names: Rocha
     given-names: Gabriel W. C.
-version: 0.1.0
-date-released: 2026-06-28
+version: 0.6.0
+date-released: 2026-07-06
 license: MIT
-repository-code: "https://github.com/REPLACE-WITH-ACCOUNT/qhe-ejp"
+repository-code: "https://github.com/GabrielWendell/qhe-ejp"
 abstract: >-
   A reproducible scientific-computing and teaching repository connecting Berry
-  curvature and Chern-number calculations to bulk-boundary correspondence and
-  chiral edge-wave-packet dynamics in the Harper-Hofstadter model.
+  curvature and Chern-number calculations to quantitative bulk-boundary
+  correspondence in the Harper-Hofstadter model. The current tagged release
+  contains the validated static topology and edge-physics workflow; time-domain
+  chiral dynamics remains a planned extension.
 keywords:
   - quantum Hall effect
   - topological phases
@@ -20,6 +22,7 @@ keywords:
   - Chern number
   - Harper-Hofstadter model
   - computational physics
+  - physics education
 preferred-citation:
   type: article
   title: "From Berry Curvature to Chiral Edge Transport: A Reproducible Computational Introduction to the Integer Quantum Hall Effect"
@@ -27,4 +30,4 @@ preferred-citation:
     - family-names: Rocha
       given-names: Gabriel W. C.
   status: "manuscript in preparation"
-  notes: "Update this entry with journal, DOI, volume, and page/article number after publication."
+  notes: "Update this entry with journal, DOI, volume, and article number after publication."
