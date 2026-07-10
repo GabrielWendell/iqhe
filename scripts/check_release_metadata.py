@@ -2,7 +2,7 @@
 
 Run from the repository root:
 
-    python scripts/check_release_metadata.py --tag v0.6.0
+    python scripts/check_release_metadata.py --tag v0.7.0
 
 The check is deliberately conservative: it confirms version synchronization,
 public repository URLs, essential release documentation, and the frozen legacy
@@ -27,7 +27,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--tag",
         default=None,
-        help="Optional semantic release tag to compare against the package version, e.g. v0.6.0.",
+        help="Optional semantic release tag to compare against the package version, e.g. v0.7.0.",
     )
     return parser.parse_args()
 

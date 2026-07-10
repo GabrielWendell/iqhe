@@ -5,16 +5,16 @@ type: software
 authors:
   - family-names: Rocha
     given-names: Gabriel W. C.
-version: 0.6.0
-date-released: 2026-07-06
+version: 0.7.0
+date-released: 2026-07-10
 license: MIT
 repository-code: "https://github.com/GabrielWendell/qhe-ejp"
 abstract: >-
   A reproducible scientific-computing and teaching repository connecting Berry
   curvature and Chern-number calculations to quantitative bulk-boundary
   correspondence in the Harper-Hofstadter model. The current tagged release
-  contains the validated static topology and edge-physics workflow; time-domain
-  chiral dynamics remains a planned extension.
+  contains validated static topology, edge physics, time-domain chiral dynamics,
+  velocity comparison, and a controlled weak-link defect demonstration.
 keywords:
   - quantum Hall effect
   - topological phases

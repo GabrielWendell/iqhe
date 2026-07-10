@@ -40,7 +40,29 @@ implemented = [
   "figure_05_fhs_kubo_validation",
   "figure_06_ribbon_bulk_boundary",
 ]
-reserved_for_later_stages = [
+stage_specific = [
   "figure_07_chiral_dynamics",
   "figure_08_velocity_and_defect",
 ]
+reserved_for_later_stages = []
+
+[dynamics]
+gap_index = 0
+side = "left"
+lx = 12
+ly = 30
+edge_width = 2
+sigma_transverse = 0.8
+sigma_longitudinal = 5.0
+center_longitudinal = 0.50
+offset_from_boundary = 0.5
+time_final = 4.0
+n_times = 41
+fit_until = 2.0
+minimum_side_participation = 0.20
+bulk_nkx = 15
+ribbon_lx = 24
+ribbon_nky = 81
+ribbon_edge_threshold = 0.50
+defect_factor = 0.0
+hbar = 1.0

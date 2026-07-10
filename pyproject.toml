@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "qhe"
-version = "0.6.0"
+version = "0.7.0"
 description = "Reproducible computational workflows for an EJP teaching article on the integer quantum Hall effect."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -39,6 +39,7 @@ dependencies = [
   "numpy>=1.26",
   "scipy>=1.12",
   "matplotlib>=3.8",
+  "pillow>=10",
   "sympy>=1.12",
   "pandas>=2.2",
 ]
@@ -111,9 +112,11 @@ known-first-party = ["qhe"]
 
 [tool.ruff.lint.per-file-ignores]
 "scripts/make_main_figures.py" = ["E402"]
+"scripts/make_stage6_figures.py" = ["E402"]
 "scripts/run_stage1_checks.py" = ["E402"]
 "scripts/run_stage2_checks.py" = ["E402"]
 "scripts/run_stage3_checks.py" = ["E402"]
+"scripts/run_stage6_checks.py" = ["E402"]
 
 [tool.ruff.format]
 quote-style = "double"

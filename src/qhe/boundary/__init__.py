@@ -12,9 +12,11 @@ from qhe.boundary.bulk_boundary import (
 )
 from qhe.boundary.geometry import (
     OpenEdgeMask,
+    OpenSideMasks,
     RibbonEdgeMasks,
     inverse_participation_ratio,
     open_edge_mask,
+    open_side_masks,
     probability_mass,
     ribbon_edge_masks,
 )
@@ -26,6 +28,7 @@ __all__ = [
     "EdgeCrossing",
     "GapCrossingSummary",
     "OpenEdgeMask",
+    "OpenSideMasks",
     "RibbonEdgeMasks",
     "RibbonSpectrum",
     "analyze_bulk_boundary_correspondence",
@@ -35,6 +38,7 @@ __all__ = [
     "gap_chern_numbers",
     "inverse_participation_ratio",
     "open_edge_mask",
+    "open_side_masks",
     "probability_mass",
     "ribbon_edge_masks",
     "ribbon_momentum_grid",

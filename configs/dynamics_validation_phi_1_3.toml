@@ -1,0 +1,39 @@
+# Stage 6 reference validation for time-domain chiral edge dynamics.
+
+[model]
+p = 1
+q = 3
+tx = 1.0
+ty = 1.0
+lattice_spacing = 1.0
+
+[dynamics]
+gap_index = 0
+side = "left"
+lx = 12
+ly = 30
+edge_width = 2
+sigma_transverse = 0.8
+sigma_longitudinal = 5.0
+center_longitudinal = 0.50
+offset_from_boundary = 0.5
+time_final = 4.0
+n_times = 41
+fit_until = 2.0
+minimum_side_participation = 0.20
+defect_factor = 0.0
+hbar = 1.0
+
+[bulk_boundary]
+bulk_nkx = 15
+ribbon_lx = 24
+ribbon_nky = 81
+ribbon_edge_threshold = 0.50
+
+[acceptance]
+max_norm_deviation = 1.0e-10
+minimum_initial_edge_probability = 0.88
+minimum_mean_clean_edge_probability = 0.80
+minimum_mean_defect_edge_probability = 0.75
+maximum_relative_velocity_error = 0.10
+maximum_defect_relative_velocity_error = 0.25

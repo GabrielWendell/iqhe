@@ -1,5 +1,6 @@
 """Shared visualization helpers and reproducible figure builders."""
 
+from qhe.viz.dynamics import plot_chiral_dynamics_figure, plot_velocity_defect_figure
 from qhe.viz.edge import plot_bulk_boundary_spectrum, plot_crossing_profiles, plot_ribbon_spectrum
 from qhe.viz.manuscript import plot_ribbon_bulk_boundary_figure
 from qhe.viz.schematics import plot_conceptual_roadmap, plot_fhs_plaquette
@@ -11,6 +12,7 @@ from qhe.viz.topology import (
 
 __all__ = [
     "plot_bulk_boundary_spectrum",
+    "plot_chiral_dynamics_figure",
     "plot_conceptual_roadmap",
     "plot_crossing_profiles",
     "plot_fhs_kubo_validation",
@@ -19,4 +21,5 @@ __all__ = [
     "plot_massive_dirac_warmup",
     "plot_ribbon_bulk_boundary_figure",
     "plot_ribbon_spectrum",
+    "plot_velocity_defect_figure",
 ]

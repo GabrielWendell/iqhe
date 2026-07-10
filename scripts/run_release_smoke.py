@@ -69,12 +69,13 @@ def main() -> int:
         output_dir.mkdir(parents=True, exist_ok=True)
 
     try:
-        _run([sys.executable, "scripts/check_release_metadata.py", "--tag", "v0.6.0"], environment)
+        _run([sys.executable, "scripts/check_release_metadata.py", "--tag", "v0.7.0"], environment)
         _run([sys.executable, "scripts/verify_repo.py"], environment)
         _run([sys.executable, "scripts/run_stage1_checks.py"], environment)
         _run([sys.executable, "scripts/run_stage2_checks.py"], environment)
         _run([sys.executable, "scripts/run_stage3_checks.py"], environment)
         _run([sys.executable, "scripts/run_stage4_checks.py"], environment)
+        _run([sys.executable, "scripts/run_stage6_checks.py"], environment)
         _run([sys.executable, "-m", "pytest", "-q"], environment)
 
         if not args.skip_notebooks:
