@@ -42,7 +42,7 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v3
         with:
-          body_path: release/RELEASE_NOTES_v0.6.0.md
+          body_path: release/RELEASE_NOTES_${{ github.ref_name }}.md
           files: |
             dist/*
             release-assets/*

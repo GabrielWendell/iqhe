@@ -112,8 +112,17 @@ def plot_chiral_dynamics_figure(
         style_colorbar(cbar, label=r"Probability $|\psi(m,n,t)|^2$")
 
     ax = bottom_axes[0]
-    ax.plot(analysis.config.times, analysis.clean.edge_probability, label=r"$P_{\mathrm{edge}}(t)$")
-    ax.plot(analysis.config.times, analysis.clean.bulk_probability, linestyle="--", label=r"$P_{\mathrm{bulk}}(t)$")
+    ax.plot(
+        analysis.config.times,
+        analysis.clean.edge_probability,
+        label=r"$P_{\mathrm{edge}}(t)$",
+    )
+    ax.plot(
+        analysis.config.times,
+        analysis.clean.bulk_probability,
+        linestyle="--",
+        label=r"$P_{\mathrm{bulk}}(t)$",
+    )
     style_axes(ax, xlabel=r"Time $t$", ylabel="Probability", grid=True, grid_axis="y")
     ax.set_ylim(-0.03, 1.03)
     ax.legend(loc="best", frameon=True)
@@ -150,6 +159,7 @@ def plot_chiral_dynamics_figure(
     panel_label(ax, "(f)")
     return fig, axes.ravel()
 
+
 def plot_velocity_defect_figure(
     analysis: DynamicsAnalysis,
     *,
@@ -172,7 +182,12 @@ def plot_velocity_defect_figure(
         analysis.defect.velocity_fit.velocity,
     ]
     x = np.arange(len(labels))
-    ax.axhline(analysis.group_velocity, color=QHE_COLORS["reference"], linestyle="--", linewidth=0.9)
+    ax.axhline(
+        analysis.group_velocity,
+        color=QHE_COLORS["reference"],
+        linestyle="--",
+        linewidth=0.9,
+    )
     ax.scatter(x, velocities, s=44.0, edgecolors="black", zorder=3)
     ax.set_xticks(x, labels, rotation=20, ha="right")
     style_axes(ax, xlabel="", ylabel=r"Velocity", grid=True, grid_axis="y")
@@ -180,7 +195,12 @@ def plot_velocity_defect_figure(
 
     ax = flat[1]
     ax.plot(analysis.config.times, analysis.clean.edge_probability, label="Clean")
-    ax.plot(analysis.config.times, analysis.defect.edge_probability, linestyle="--", label="Defect")
+    ax.plot(
+        analysis.config.times,
+        analysis.defect.edge_probability,
+        linestyle="--",
+        label="Defect",
+    )
     style_axes(ax, xlabel=r"Time $t$", ylabel=r"$P_{\mathrm{edge}}(t)$", grid=True, grid_axis="y")
     ax.set_ylim(0.0, 1.03)
     ax.legend(loc="best", frameon=True)

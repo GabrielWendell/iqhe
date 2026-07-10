@@ -134,7 +134,10 @@ def edge_gap_selection(
     return selected
 
 
-def project_onto_subspace(seed: np.ndarray, eigenvectors: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+def project_onto_subspace(
+    seed: np.ndarray,
+    eigenvectors: np.ndarray,
+) -> tuple[np.ndarray, np.ndarray]:
     """Project ``seed`` onto the column space of ``eigenvectors`` while preserving phases."""
 
     vector = normalize_state(seed)

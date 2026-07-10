@@ -14,8 +14,8 @@ from qhe.dynamics import (
     boundary_link_sites,
     evolve_spectral,
     gaussian_edge_seed,
-    normalize_state,
     norm_diagnostics,
+    normalize_state,
     side_current_indicator,
 )
 from qhe.dynamics.evolution import diagonalize_hamiltonian

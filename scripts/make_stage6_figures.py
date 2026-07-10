@@ -124,7 +124,12 @@ def _assert_title_free(figure: Figure, figure_id: str) -> None:
         raise RuntimeError(f"{figure_id} violates the no-title policy: {titles!r}")
 
 
-def _save(figure_id: str, figure: Figure, output_dir: Path, formats: tuple[str, ...]) -> FigureRecord:
+def _save(
+    figure_id: str,
+    figure: Figure,
+    output_dir: Path,
+    formats: tuple[str, ...],
+) -> FigureRecord:
     _assert_title_free(figure, figure_id)
     import matplotlib.pyplot as plt
 

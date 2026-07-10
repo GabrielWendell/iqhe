@@ -99,6 +99,12 @@ def _check(condition: bool, message: str, failures: list[str]) -> None:
         failures.append(message)
 
 
+def _row(label: str, clean: float | int, defect: float | int, spec: str) -> str:
+    clean_text = format(clean, spec)
+    defect_text = format(defect, spec)
+    return f"{label:<33} | {clean_text:>12} | {defect_text:>12}"
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
@@ -118,15 +124,13 @@ def main() -> int:
         failures,
     )
     _check(
-        analysis.clean.initial_edge_probability
-        >= acceptance["minimum_initial_edge_probability"],
+        analysis.clean.initial_edge_probability >= acceptance["minimum_initial_edge_probability"],
         "Initial edge probability is below the Stage-6 threshold: "
         f"{analysis.clean.initial_edge_probability:.6f}.",
         failures,
     )
     _check(
-        analysis.clean.mean_edge_probability
-        >= acceptance["minimum_mean_clean_edge_probability"],
+        analysis.clean.mean_edge_probability >= acceptance["minimum_mean_clean_edge_probability"],
         f"Clean mean edge probability too low: {analysis.clean.mean_edge_probability:.6f}.",
         failures,
     )
@@ -155,25 +159,87 @@ def main() -> int:
         failures,
     )
 
-    print("Stage-6 chiral-dynamics validation")
-    print(f"Model: phi = {config.parameters.p}/{config.parameters.q}, tx={config.parameters.tx:g}, ty={config.parameters.ty:g}")
-    print(f"Open lattice: Lx = {config.lx}, Ly = {config.ly}, edge width = {config.edge_width}")
-    print(
-        "Selected branch: "
-        f"gap = {config.gap_index + 1}, side = {config.side}, ky={analysis.crossing.ky:.6f}, "
-        f"v_g = {analysis.group_velocity:.6f}"
+    model_text = (
+        f"Model: phi = {config.parameters.p}/{config.parameters.q}, "
+        f"tx={config.parameters.tx:g}, ty={config.parameters.ty:g}"
     )
-    print(f"Weak-link defect: side = {analysis.weak_link.side}, position = {analysis.weak_link.position}, factor = {analysis.weak_link.factor:g}")
+    lattice_text = (
+        f"Open lattice: Lx = {config.lx}, Ly = {config.ly}, edge width = {config.edge_width}"
+    )
+    branch_text = (
+        f"Selected branch: gap = {config.gap_index + 1}, side = {config.side}, "
+        f"ky={analysis.crossing.ky:.6f}, v_g = {analysis.group_velocity:.6f}"
+    )
+    defect_text = (
+        f"Weak-link defect: side = {analysis.weak_link.side}, "
+        f"position = {analysis.weak_link.position}, "
+        f"factor = {analysis.weak_link.factor:g}"
+    )
+
+    print("Stage-6 chiral-dynamics validation")
+    print(model_text)
+    print(lattice_text)
+    print(branch_text)
+    print(defect_text)
     print()
     print("quantity                         | clean        | defect")
     print("---------------------------------+--------------+--------------")
-    print(f"selected edge states             | {analysis.clean.selected_state_count:12d} | {analysis.defect.selected_state_count:12d}")
-    print(f"max norm deviation               | {analysis.clean.norms.max_deviation:12.3e} | {analysis.defect.norms.max_deviation:12.3e}")
-    print(f"initial edge probability         | {analysis.clean.initial_edge_probability:12.6f} | {analysis.defect.initial_edge_probability:12.6f}")
-    print(f"mean edge probability            | {analysis.clean.mean_edge_probability:12.6f} | {analysis.defect.mean_edge_probability:12.6f}")
-    print(f"packet velocity                  | {analysis.clean.velocity_fit.velocity:12.6f} | {analysis.defect.velocity_fit.velocity:12.6f}")
-    print(f"relative velocity error          | {analysis.relative_velocity_error:12.6f} | {analysis.defect_relative_velocity_error:12.6f}")
-    print(f"initial side-current indicator   | {analysis.clean.side_current_initial:12.6f} | {analysis.defect.side_current_initial:12.6f}")
+    print(
+        _row(
+            "selected edge states",
+            analysis.clean.selected_state_count,
+            analysis.defect.selected_state_count,
+            "d",
+        )
+    )
+    print(
+        _row(
+            "max norm deviation",
+            analysis.clean.norms.max_deviation,
+            analysis.defect.norms.max_deviation,
+            ".3e",
+        )
+    )
+    print(
+        _row(
+            "initial edge probability",
+            analysis.clean.initial_edge_probability,
+            analysis.defect.initial_edge_probability,
+            ".6f",
+        )
+    )
+    print(
+        _row(
+            "mean edge probability",
+            analysis.clean.mean_edge_probability,
+            analysis.defect.mean_edge_probability,
+            ".6f",
+        )
+    )
+    print(
+        _row(
+            "packet velocity",
+            analysis.clean.velocity_fit.velocity,
+            analysis.defect.velocity_fit.velocity,
+            ".6f",
+        )
+    )
+    print(
+        _row(
+            "relative velocity error",
+            analysis.relative_velocity_error,
+            analysis.defect_relative_velocity_error,
+            ".6f",
+        )
+    )
+    print(
+        _row(
+            "initial side-current indicator",
+            analysis.clean.side_current_initial,
+            analysis.defect.side_current_initial,
+            ".6f",
+        )
+    )
 
     if failures:
         print("\nStage-6 acceptance checks failed:")

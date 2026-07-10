@@ -1,4 +1,3 @@
-"""Wave-packet preparation, time propagation, currents, and dynamics observables."""
 """Time-domain chiral edge dynamics, observables, currents, and defects."""
 
 from qhe.dynamics.analysis import (
