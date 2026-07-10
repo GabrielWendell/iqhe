@@ -56,6 +56,60 @@ class OpenEdgeMask:
             raise ValueError("Open mask dimensions and width must be strictly positive.")
 
 
+@dataclass(frozen=True, slots=True)
+class OpenSideMasks:
+    """Boolean side and perimeter masks for a fully open rectangular lattice.
+
+    The flattened order follows ``index(m, n; Ly) = m * Ly + n``.  The side masks are
+    intentionally overlapping at corners; this is useful for dynamics because a packet can route
+    around a corner while still belonging to adjacent boundary strips.  The ``perimeter`` mask is
+    the union of the four sides.
+    """
+
+    left: np.ndarray
+    right: np.ndarray
+    bottom: np.ndarray
+    top: np.ndarray
+    perimeter: np.ndarray
+    lx: int
+    ly: int
+    width: int
+
+    def __post_init__(self) -> None:
+        expected = (self.lx * self.ly,)
+        for name, mask in (
+            ("left", self.left),
+            ("right", self.right),
+            ("bottom", self.bottom),
+            ("top", self.top),
+            ("perimeter", self.perimeter),
+        ):
+            if mask.shape != expected:
+                raise ValueError(f"Open side mask {name!r} shape must equal (lx * ly,).")
+            if mask.dtype != np.dtype(bool):
+                raise ValueError(f"Open side mask {name!r} must be Boolean.")
+        if self.lx <= 0 or self.ly <= 0 or self.width <= 0:
+            raise ValueError("Open side-mask dimensions and width must be strictly positive.")
+        if not np.array_equal(self.perimeter, self.left | self.right | self.bottom | self.top):
+            raise ValueError("perimeter must be the union of left, right, bottom, and top masks.")
+
+    def side(self, name: str) -> np.ndarray:
+        """Return one side mask by semantic name."""
+
+        normalized = str(name).strip().lower()
+        if normalized == "left":
+            return self.left
+        if normalized == "right":
+            return self.right
+        if normalized == "bottom":
+            return self.bottom
+        if normalized == "top":
+            return self.top
+        if normalized in {"edge", "perimeter", "total"}:
+            return self.perimeter
+        raise ValueError("side must be one of: left, right, bottom, top, perimeter.")
+
+
 def _validate_edge_width(length: int, width: int, *, name: str) -> None:
     if length <= 0:
         raise ValueError(f"{name} must be strictly positive.")
@@ -97,6 +151,36 @@ def open_edge_mask(lx: int, ly: int, edge_width: int) -> OpenEdgeMask:
     n = np.arange(int(ly))[None, :]
     grid = (m < edge_width) | (m >= lx - edge_width) | (n < edge_width) | (n >= ly - edge_width)
     return OpenEdgeMask(mask=grid.reshape(lx * ly), lx=int(lx), ly=int(ly), width=int(edge_width))
+
+
+def open_side_masks(lx: int, ly: int, edge_width: int) -> OpenSideMasks:
+    """Return left/right/bottom/top side masks for a fully open rectangular lattice."""
+
+    _validate_edge_width(int(lx), int(edge_width), name="lx")
+    _validate_edge_width(int(ly), int(edge_width), name="ly")
+    m = np.arange(int(lx))[:, None]
+    n = np.arange(int(ly))[None, :]
+    left = np.broadcast_to(m < int(edge_width), (int(lx), int(ly))).reshape(int(lx) * int(ly))
+    right = np.broadcast_to(m >= int(lx) - int(edge_width), (int(lx), int(ly))).reshape(
+        int(lx) * int(ly)
+    )
+    bottom = np.broadcast_to(n < int(edge_width), (int(lx), int(ly))).reshape(
+        int(lx) * int(ly)
+    )
+    top = np.broadcast_to(n >= int(ly) - int(edge_width), (int(lx), int(ly))).reshape(
+        int(lx) * int(ly)
+    )
+    perimeter = left | right | bottom | top
+    return OpenSideMasks(
+        left=left.astype(bool, copy=False),
+        right=right.astype(bool, copy=False),
+        bottom=bottom.astype(bool, copy=False),
+        top=top.astype(bool, copy=False),
+        perimeter=perimeter.astype(bool, copy=False),
+        lx=int(lx),
+        ly=int(ly),
+        width=int(edge_width),
+    )
 
 
 def _as_state_matrix(states: np.ndarray, n_sites: int) -> tuple[np.ndarray, bool]:
@@ -182,9 +266,11 @@ def inverse_participation_ratio(
 
 __all__ = [
     "OpenEdgeMask",
+    "OpenSideMasks",
     "RibbonEdgeMasks",
     "inverse_participation_ratio",
     "open_edge_mask",
+    "open_side_masks",
     "probability_mass",
     "ribbon_edge_masks",
 ]

@@ -10,10 +10,10 @@ implementation of a publication result or silently change the frozen convention 
    mesh convergence for the `phi=1/3` Harper-Hofstadter model.
 3. `02_edge_physics.ipynb` — Stage-3 ribbon spectrum, edge participation, gap Chern numbers, and
    side-resolved oriented crossings.
-4. `03_hofstadter_bulk.ipynb` — planned magnetic subbands, gaps, and annotated Chern numbers.
-5. `04_ribbon_edge_states.ipynb` — planned expanded edge-state visual analysis.
-6. `05_chiral_dynamics.ipynb` — planned wave-packet dynamics.
-7. `06_velocity_and_defect.ipynb` — planned velocity and defect validation.
+4. `03_hofstadter_bulk.ipynb` — magnetic subbands, gaps, and annotated Chern numbers.
+5. `04_ribbon_edge_states.ipynb` — expanded edge-state visual analysis.
+6. `05_chiral_dynamics.ipynb` — Stage-6 edge-projected wave-packet dynamics.
+7. `06_velocity_and_defect.ipynb` — Stage-6 velocity comparison and weak-link defect validation.
 
 Run a notebook only after installing the editable package with:
 

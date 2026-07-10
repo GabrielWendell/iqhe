@@ -5,6 +5,25 @@ All notable changes to QHE-EJP are documented in this file.
 The project follows a staged scientific-reproducibility workflow. Version numbers describe
 repository releases, not completion of the companion manuscript.
 
+## [0.7.0] — 2026-07-10
+
+### Added
+
+- Stage-6 chiral edge-wave-packet dynamics workflow;
+- phase-preserving Gaussian edge-packet projection onto selected gap edge states;
+- spectral unitary time evolution with norm-conservation diagnostics;
+- edge retention, bulk leakage, side-adapted centroid/arc-length coordinate, and velocity fitting;
+- local bond-current diagnostics for Harper-Hofstadter nearest-neighbour bonds;
+- controlled weak-link boundary-defect demonstration;
+- Stage-6 validation script, dynamics configuration, teaching notebooks, and manuscript Figures 7--8.
+
+### Verified scope
+
+- clean packet velocity agrees with the selected ribbon edge-branch group velocity within the configured finite-size tolerance;
+- clean and defect evolutions conserve norm without stepwise renormalization;
+- edge probability remains high in both clean and weak-link-defect runs.
+
+
 ## [0.6.0] — 2026-07-06
 
 ### Added

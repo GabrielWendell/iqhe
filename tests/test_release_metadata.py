@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_release_metadata_check_passes() -> None:
     completed = subprocess.run(
-        [sys.executable, "scripts/check_release_metadata.py", "--tag", "v0.6.0"],
+        [sys.executable, "scripts/check_release_metadata.py", "--tag", "v0.7.0"],
         cwd=ROOT,
         text=True,
         capture_output=True,
@@ -32,6 +32,8 @@ def test_notebook_executor_discovers_production_notebooks() -> None:
         "02_edge_physics.ipynb",
         "03_hofstadter_bulk.ipynb",
         "04_ribbon_edge_states.ipynb",
+        "05_chiral_dynamics.ipynb",
+        "06_velocity_and_defect.ipynb"
     ]
 
 
@@ -41,7 +43,7 @@ def test_source_archive_excludes_git_metadata(tmp_path: Path) -> None:
             sys.executable,
             "scripts/create_release_archive.py",
             "--tag",
-            "v0.6.0",
+            "v0.7.0",
             "--output-dir",
             str(tmp_path),
         ],
@@ -51,7 +53,7 @@ def test_source_archive_excludes_git_metadata(tmp_path: Path) -> None:
         check=False,
     )
     assert completed.returncode == 0, completed.stdout + completed.stderr
-    archive = tmp_path / "qhe-ejp-v0.6.0-source.zip"
+    archive = tmp_path / "qhe-ejp-v0.7.0-source.zip"
     checksums = tmp_path / "SHA256SUMS.txt"
     assert archive.is_file()
     assert checksums.is_file()
