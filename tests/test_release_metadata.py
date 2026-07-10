@@ -33,7 +33,7 @@ def test_notebook_executor_discovers_production_notebooks() -> None:
         "03_hofstadter_bulk.ipynb",
         "04_ribbon_edge_states.ipynb",
         "05_chiral_dynamics.ipynb",
-        "06_velocity_and_defect.ipynb"
+        "06_velocity_and_defect.ipynb",
     ]
 
 

@@ -164,9 +164,7 @@ def open_side_masks(lx: int, ly: int, edge_width: int) -> OpenSideMasks:
     right = np.broadcast_to(m >= int(lx) - int(edge_width), (int(lx), int(ly))).reshape(
         int(lx) * int(ly)
     )
-    bottom = np.broadcast_to(n < int(edge_width), (int(lx), int(ly))).reshape(
-        int(lx) * int(ly)
-    )
+    bottom = np.broadcast_to(n < int(edge_width), (int(lx), int(ly))).reshape(int(lx) * int(ly))
     top = np.broadcast_to(n >= int(ly) - int(edge_width), (int(lx), int(ly))).reshape(
         int(lx) * int(ly)
     )

@@ -56,10 +56,7 @@ def bond_currents(
             if n + 1 < int(ly):
                 target = site_index(m, n + 1, int(ly))
                 jy[m, n] = (2.0 / hbar) * np.imag(
-                    params.ty
-                    * peierls_phase(m, params)
-                    * np.conjugate(psi[origin])
-                    * psi[target]
+                    params.ty * peierls_phase(m, params) * np.conjugate(psi[origin]) * psi[target]
                 )
     return BondCurrents(jx=jx, jy=jy)
 
