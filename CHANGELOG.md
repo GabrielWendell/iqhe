@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to QHE-EJP are documented in this file.
+All notable changes to IQHE are documented in this file.
 
 The project follows a staged scientific-reproducibility workflow. Version numbers describe
 repository releases, not completion of the companion manuscript.
@@ -41,13 +41,13 @@ repository releases, not completion of the companion manuscript.
 
 - README rewritten around a clean-install/reproduce/release workflow;
 - Conda environment now includes notebook execution and release dependencies;
-- repository URLs now point to `GabrielWendell/qhe-ejp`;
+- repository URLs now point to `GabrielWendell/iqhe`;
 - legacy provenance references now use the actual import package name `qhe`.
 
 ### Verified scope
 
 - canonical Harper-Hofstadter Hamiltonians and frozen sign conventions;
-- FHS and interband-Kubo bulk-topology validation for \(\phi=1/3\);
+- FHS and interband-Kubo bulk-topology validation for $\phi=1/3$;
 - measurable static bulk-boundary correspondence in a finite ribbon;
 - deterministic generation of manuscript Figures 1–6;
 - executable Stage 1–4 teaching notebooks.

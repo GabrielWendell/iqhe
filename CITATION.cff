@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it using the metadata below."
-title: "QHE-EJP: Reproducible Computational Introduction to the Integer Quantum Hall Effect"
+title: "QHE: Reproducible Computational Introduction to the Integer Quantum Hall Effect"
 type: software
 authors:
   - family-names: Rocha
@@ -8,7 +8,7 @@ authors:
 version: 0.7.0
 date-released: 2026-07-10
 license: MIT
-repository-code: "https://github.com/GabrielWendell/qhe-ejp"
+repository-code: "https://github.com/GabrielWendell/iqhe"
 abstract: >-
   A reproducible scientific-computing and teaching repository connecting Berry
   curvature and Chern-number calculations to quantitative bulk-boundary

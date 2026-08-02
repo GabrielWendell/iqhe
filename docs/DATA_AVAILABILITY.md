@@ -12,7 +12,7 @@ caption sources, and release metadata needed to reproduce the validated static r
 online code location is:
 
 ```text
-https://github.com/GabrielWendell/qhe-ejp
+https://github.com/GabrielWendell/iqhe
 ```
 
 Before manuscript submission, archive the tagged release with a DOI-issuing service such as Zenodo and
@@ -22,7 +22,7 @@ insert the resulting DOI in `CITATION.cff`, the manuscript, and the final data-a
 
 > **Data availability.** No external empirical data were used in this study. All numerical results are
 > generated deterministically from the version-controlled source code, notebooks, and configuration
-> files in the QHE-EJP repository. A tagged archival release of the code package will be deposited in a
+> files in the IQHE repository. A tagged archival release of the code package will be deposited in a
 > DOI-issuing repository before publication; the final DOI will be cited here and in the software
 > citation metadata.
 

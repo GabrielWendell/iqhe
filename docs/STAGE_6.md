@@ -1,6 +1,6 @@
 # Stage 6 implementation record — chiral dynamics and velocity/defect validation
 
-Stage 6 completes the validated computational chain needed for the EJP paper by adding measurable
+Stage 6 completes the validated computational chain needed for the paper by adding measurable
 time-domain edge dynamics to the static bulk-boundary correspondence established in Stage 3.
 
 ## Added source modules

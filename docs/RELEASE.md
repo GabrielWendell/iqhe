@@ -1,6 +1,6 @@
 # Release procedure
 
-This document defines the public release process for QHE-EJP. A release is a reproducible code-and-results
+This document defines the public release process for IQHE. A release is a reproducible code-and-results
 snapshot; it does not imply that the associated manuscript is finalized or submitted.
 
 ## Preconditions

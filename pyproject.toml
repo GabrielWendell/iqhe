@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "qhe"
 version = "0.7.0"
-description = "Reproducible computational workflows for an EJP teaching article on the integer quantum Hall effect."
+description = "Reproducible computational workflows for an teaching paper on the integer quantum Hall effect."
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
@@ -81,10 +81,10 @@ all = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/GabrielWendell/qhe-ejp"
-Repository = "https://github.com/GabrielWendell/qhe-ejp"
-Issues = "https://github.com/GabrielWendell/qhe-ejp/issues"
-Changelog = "https://github.com/GabrielWendell/qhe-ejp/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/GabrielWendell/iqhe"
+Repository = "https://github.com/GabrielWendell/iqhe"
+Issues = "https://github.com/GabrielWendell/iqhe/issues"
+Changelog = "https://github.com/GabrielWendell/iqhe/blob/main/CHANGELOG.md"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
