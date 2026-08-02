@@ -85,7 +85,7 @@ def main() -> int:
     urls = project.get("urls", {})
     for name in ("Homepage", "Repository", "Issues"):
         value = str(urls.get(name, ""))
-        if "github.com/GabrielWendell/qhe-ejp" not in value:
+        if "github.com/GabrielWendell/iqhe" not in value:
             failures.append(f"Project URL {name!r} is missing or not public-facing: {value!r}.")
 
     release_paths = (

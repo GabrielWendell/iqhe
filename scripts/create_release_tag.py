@@ -79,7 +79,7 @@ def main() -> int:
         print(f"Tag {args.tag!r} already exists.", file=sys.stderr)
         return 1
 
-    created = _git("tag", "-a", args.tag, "-m", f"QHE-EJP {args.tag} release")
+    created = _git("tag", "-a", args.tag, "-m", f"IQHE {args.tag} release")
     if created.returncode != 0:
         print(created.stderr, file=sys.stderr, end="")
         return created.returncode
