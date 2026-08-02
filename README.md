@@ -1,9 +1,8 @@
-# QHE-EJP
+# IQHE
 
 > **A reproducible computational teaching project on the integer quantum Hall effect.**
 
-QHE-EJP is the source-code, notebook, validation, and figure-generation repository supporting the
-planned European Journal of Physics article:
+IQHE is the source-code, notebook, validation, and figure-generation repository supporting the planned European Journal of Physics article:
 
 > *From Berry Curvature to Chiral Edge Transport: A Reproducible Computational Introduction to the
 > Integer Quantum Hall Effect*
@@ -102,7 +101,7 @@ Equivalent Make targets are available through `make verify`, `make stage-checks`
 ## Repository layout
 
 ```text
-qhe-ejp/
+iqhe/
 ├── src/qhe/              # Reusable physics, topology, boundary, and visualization modules
 ├── tests/                # Unit and numerical-regression tests
 ├── notebooks/            # Pedagogically ordered executable notebooks

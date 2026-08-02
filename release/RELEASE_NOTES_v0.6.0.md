@@ -1,10 +1,8 @@
-# QHE-EJP v0.6.0 — static-topology reproducibility release
+# IQHE v0.6.0 — static-topology reproducibility release
 
 ## Summary
 
-This release packages the reproducible computational core supporting the static portion of the planned EJP
-teaching article, *From Berry Curvature to Chiral Edge Transport: A Reproducible Computational
-Introduction to the Integer Quantum Hall Effect*.
+This release packages the reproducible computational core supporting the static portion of the planned teaching article, *From Berry Curvature to Chiral Edge Transport: A Reproducible Computational Introduction to the Integer Quantum Hall Effect*.
 
 ## Included scientific scope
 
@@ -16,8 +14,7 @@ Introduction to the Integer Quantum Hall Effect*.
 - deterministic source generation for manuscript Figures 1–6;
 - executable teaching notebooks for the validated Stage 1–4 workflow.
 
-For the central \(\phi=1/3\) model, the release reproduces the frozen Chern sequence
-\((C_1,C_2,C_3)=(-1,2,-1)\), subject to the documented convention.
+For the central $\phi=1/3$ model, the release reproduces the frozen Chern sequence $(C_1,C_2,C_3)=(-1,2,-1)$, subject to the documented convention.
 
 ## Reproduce locally
 
